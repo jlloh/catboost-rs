@@ -1,5 +1,8 @@
 CatBoost Rust Package
 ======================
+### Cargo Package
+Cargo package can be found [here](https://crates.io/crates/catboost-rs)
+
 
 ### Historical Context
 * This started off as an [attempt](https://github.com/catboost/catboost/pull/2161) to publish the catboost bindings to cargo
