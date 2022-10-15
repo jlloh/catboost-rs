@@ -1,9 +1,9 @@
 [package]
 name = "catboost-rs"
-version = "0.1.4"
+version = "0.1.5"
 authors = ["Sergey Kiselev <kiselev.sg@gmail.com>", "Loh Jia Long <jlloh89@gmail.com>"]
 edition = "2018"
-repository = "https://github.com/jlloh/catboost/tree/refactor-crate-avoid-build/catboost/rust-package"
+repository = "https://github.com/jlloh/catboost-rs"
 description = """
 Unofficial Rust bindings for Catboost (Machine Learning Gradient Boosting Library from Yandex)
 """
