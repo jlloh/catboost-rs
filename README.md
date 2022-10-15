@@ -1,23 +1,23 @@
 CatBoost Rust Package
 ======================
 
-### Differences with official rust package
+### Historical Context
+* This started off as an [attempt](https://github.com/catboost/catboost/pull/2161) to publish the catboost bindings to cargo
+* Eventually decided to unofficially split out the code and maintain separate rust bindings, similar to `onnxruntime-rs`
+* Note that this is voluntarily maintained and not yet endorsed by the official catboost team
+
+### Differences versus official [rust package](https://github.com/catboost/catboost/tree/master/catboost/rust-package)
+* Necessary changes made to publish crate instead of referencing the git repo, which is pretty big
 * The official `catboost-sys` one attempts to rebuild the shared library, whereas this one downloads it from the github release page.
 * The `build.rs` script is rewritten to also work for M1 macs (same strategy, downloading the shared library).
 * Also marked the Model as `Send` so that it can be used across threads, due to the documentation stating it's thread safe. Note that this is not yet extensively tested though.
 * As of the present the catboost version is hardcoded, it is currently 1.0.6.
 
-### TODO
-* It seems slightly excessive to have to fork the whole repo just to maintain the code for the rust bindings
-* It also seems excessive to have to clone the whole repo, as all we need is `wrapper.h` and the files in the `model_interface` folder.
-* Perhaps a better idea is to split out the repo, similar to `onnxruntime-rs`
-
 ### Basic usage example
-
 1. Add a dependency to your Cargo.toml:
 ```
 [dependencies]
-catboost-rs = "0.1.3"
+catboost-rs = "0.1.4"
 ```
 2. To use catboost, it assumes the shared libraries are available. You will need to download the shared library from the official [releases page](https://github.com/catboost/catboost/releases). If you are using linux, download `libcatboostmodel.so`. If you are using Mac, download `libcatboostmodel.dylib`. As of the present, only version 1.0.6 is supported.
 3. Move these libraries to `/usr/lib` 
@@ -56,7 +56,4 @@ fn main() {
 Run `cargo doc --open` in `catboost/rust-package` directory.
 
 ### Tests
-
 Run `cargo test` in `catboost/rust-package` directory.
-
-To run tests with sanitizer, uncomment line `"--sanitize=address",` in `catboost/rust-package/catboost-sys/build.rs` and run `RUSTFLAGS="-Z sanitizer=address" cargo +nightly test`.
