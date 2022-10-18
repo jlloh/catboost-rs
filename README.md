@@ -16,6 +16,11 @@ Cargo package can be found [here](https://crates.io/crates/catboost-rs)
 * Also marked the Model as `Send` so that it can be used across threads, due to the documentation stating it's thread safe. Note that this is not yet extensively tested though.
 * As of the present the catboost version is hardcoded, it is currently 1.0.6.
 
+### If you need dependencies for bindgen
+```
+apt-get install -y curl build-essential pkg-config libssl-dev libclang-dev clang cmake
+```
+
 ### Basic usage example
 1. Add a dependency to your Cargo.toml:
 ```
