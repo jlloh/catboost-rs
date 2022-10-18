@@ -25,7 +25,7 @@ apt-get install -y curl build-essential pkg-config libssl-dev libclang-dev clang
 1. Add a dependency to your Cargo.toml:
 ```
 [dependencies]
-catboost-rs = "0.1.4"
+catboost-rs = "0.1.6"
 ```
 2. To use catboost, it assumes the shared libraries are available. You will need to download the shared library from the official [releases page](https://github.com/catboost/catboost/releases). If you are using linux, download `libcatboostmodel.so`. If you are using Mac, download `libcatboostmodel.dylib`. As of the present, only version 1.0.6 is supported.
 3. Move these libraries to `/usr/lib` 
