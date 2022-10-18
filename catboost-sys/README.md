@@ -11,7 +11,8 @@ Major differences are:
 * We keep a copy of the `model_interface` c_bindings from `https://github.com/catboost/catboost/tree/v1.0.6/catboost/libs/model_interface` in this repo to simplify things
 
 ## Build Instructions
-// * Clone the official [catboost repo](https://github.com/catboost/catboost)
-// * Check out the branch for release 1.0.6
-// * Set an environment variable `CATBOOST_DIR` to point to the absolute path where you cloned the repo
+* Make sure you have the dependencies for bindgen
+```
+apt-get install -y build-essential pkg-config libssl-dev libclang-dev clang cmake
+```
 * Build it with `cargo build`
