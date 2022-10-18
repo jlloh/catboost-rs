@@ -86,6 +86,18 @@ impl Model {
         Ok(prediction)
     }
 
+    /// Apply sigmoid to get predict probability
+    // https://catboost.ai/en/docs/concepts/output-data_model-value-output#classification
+    pub fn calc_predict_proba(
+        &self,
+        float_features: Vec<Vec<f32>>,
+        cat_features: Vec<Vec<String>>,
+    ) -> CatBoostResult<Vec<f64>> {
+        let raw_results = self.calc_model_prediction(float_features, cat_features)?;
+        let probabilities = raw_results.into_iter().map(sigmoid).collect();
+        Ok(probabilities)
+    }
+
     /// Get expected float feature count for model
     pub fn get_float_features_count(&self) -> usize {
         unsafe { catboost_sys::GetFloatFeaturesCount(self.handle) }
@@ -115,6 +127,12 @@ impl Drop for Model {
 
 // Should be thread safe as stated here: https://github.com/catboost/catboost/issues/272
 unsafe impl Send for Model {}
+
+unsafe impl Sync for Model {}
+
+fn sigmoid(x: f64) -> f64 {
+    1. / (1. + (-x).exp())
+}
 
 #[cfg(test)]
 mod tests {
