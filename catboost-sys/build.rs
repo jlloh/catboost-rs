@@ -39,31 +39,35 @@ fn main() -> Result<()> {
     let out_dir =
         PathBuf::from(env::var("OUT_DIR").context("Couldn't get OUT_DIR from env variable")?);
 
-    let catboost_dir =
-        PathBuf::from(env::var("CATBOOST_DIR").context("Couldn't get CATBOOST_DIR (which should point to the independently cloned catboost git repo) from env variable")?);
+    let build_dir = PathBuf::from(
+        env::var("CARGO_MANIFEST_DIR")
+            .context("Couldn't get CARGO_MANIFEST_DIR from env variable")?,
+    );
 
-    let model_interface_dir = out_dir.join("catboost/libs/model_interface");
+    let out_model_interface_dir = out_dir.join("catboost/libs/model_interface");
 
-    create_dir_all(&model_interface_dir).context("Couldn't create model interface directory")?;
+    create_dir_all(&out_model_interface_dir)
+        .context("Couldn't create model interface directory")?;
 
     download_file(
         download_url,
-        Path::new(&model_interface_dir).to_path_buf(),
+        Path::new(&out_model_interface_dir).to_path_buf(),
         &dest_file,
     )?;
 
-    let cb_model_interface_root_path = catboost_dir.join("catboost/libs/model_interface");
+    let c_bindings_model_interface_path = build_dir.join("c_bindings/model_interface");
 
-    let cb_model_interface_root = cb_model_interface_root_path
-        .canonicalize()
-        .context(format!(
-            "Failed to find model_interface C directory {:?}",
-            cb_model_interface_root_path
-        ))?;
+    let c_bindings_model_interface =
+        c_bindings_model_interface_path
+            .canonicalize()
+            .context(format!(
+                "Failed to find model_interface directory with c bindings: {:?}",
+                c_bindings_model_interface_path
+            ))?;
 
     let bindings = bindgen::Builder::default()
         .header("wrapper.h")
-        .clang_arg(format!("-I{}", cb_model_interface_root.display()))
+        .clang_arg(format!("-I{}", c_bindings_model_interface.display()))
         .size_t_is_usize(true)
         .rustfmt_bindings(true)
         .generate()

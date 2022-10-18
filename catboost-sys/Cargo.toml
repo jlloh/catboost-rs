@@ -1,11 +1,11 @@
 [package]
 name = "catboost-sys"
-version = "0.1.4"
+version = "0.1.5"
 authors = ["Sergey Kiselev <kiselev.sg@gmail.com>", "Loh Jia Long <jlloh89@gmail.com>"]
 edition = "2018"
 repository = "https://github.com/jlloh/catboost-rs"
 description = """
-Internal unsafe Rust bindings for catboostlib c++ apis using bindgen
+Internal unsafe Rust bindings for catboostlib C apis using bindgen
 """
 license = "MIT/Apache-2.0"
 

@@ -1,0 +1,41 @@
+C GetErrorString
+
+C ModelCalcerCreate
+C ModelCalcerDelete
+
+C DataWrapperCreate
+C DataWrapperDelete
+C AddFloatFeatures
+C AddCatFeatures
+C AddTextFeatures
+C BuildDataProvider
+
+C LoadFullModelFromFile
+C LoadFullModelFromBuffer
+
+C EnableGPUEvaluation
+C SetPredictionType
+C SetPredictionTypeString
+
+C CalcModelPrediction
+C CalcModelPredictionText
+C CalcModelPredictionSingle
+C CalcModelPredictionFlat
+C CalcModelPredictionWithHashedCatFeatures
+C CalcModelPredictionWithHashedCatFeaturesAndTextFeatures
+C PredictSpecificClass
+C PredictSpecificClassText
+C PredictSpecificClassSingle
+C PredictSpecificClassWithHashedCatFeatures
+C PredictSpecificClassWithHashedCatFeaturesAndTextFeatures
+
+C GetStringCatFeatureHash
+C GetIntegerCatFeatureHash
+C GetFloatFeaturesCount
+C GetCatFeaturesCount
+C GetTreeCount
+C GetDimensionsCount
+C GetPredictionDimensionsCount
+C CheckModelMetadataHasKey
+C GetModelInfoValueSize
+C GetModelInfoValue
