@@ -6,7 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.1.5] - 2022-10-15
+## [0.1.7] - 2022-10-19
+### Changed
+* Fix README by adding a softlink
+
+## [0.1.6] - 2022-10-19
 ### Added
 * `calc_predict_proba` function that applies a sigmoid to get results as probabilities
 ### Changed
