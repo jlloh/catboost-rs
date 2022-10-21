@@ -15,7 +15,7 @@ mod tests {
         let ret_val = unsafe {
             LoadFullModelFromFile(
                 model_handle,
-                std::ffi::CString::new("../tmp/model.bin").unwrap().as_ptr(),
+                std::ffi::CString::new("files/model.bin").unwrap().as_ptr(),
             )
         };
         if !ret_val {
@@ -37,7 +37,7 @@ mod tests {
 
     #[test]
     fn it_works_buffer() {
-        let buffer = read_fast("../tmp/model.bin").unwrap();
+        let buffer = read_fast("files/model.bin").unwrap();
         let model_handle = unsafe { ModelCalcerCreate() };
         let ret_val = unsafe {
             LoadFullModelFromBuffer(
