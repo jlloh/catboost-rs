@@ -1,6 +1,6 @@
 [package]
 name = "catboost-rs"
-version = "0.1.7"
+version = "0.1.8"
 authors = ["Sergey Kiselev <kiselev.sg@gmail.com>", "Loh Jia Long <jlloh89@gmail.com>"]
 edition = "2018"
 repository = "https://github.com/jlloh/catboost-rs"
@@ -11,4 +11,4 @@ license = "MIT/Apache-2.0"
 
 
 [dependencies]
-catboost-sys = "0.1.5"
+catboost-sys = "0.1.6"
