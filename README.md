@@ -12,7 +12,7 @@ Cargo package can be found [here](https://crates.io/crates/catboost-rs)
 ### Differences versus official [rust package](https://github.com/catboost/catboost/tree/master/catboost/rust-package)
 * Necessary changes made to publish crate instead of referencing the git repo, which is pretty big
 * The official `catboost-sys` one attempts to rebuild the shared library, whereas this one downloads it from the github release page.
-* The `build.rs` script is rewritten to also work for M1 macs (same strategy, downloading the shared library).
+* The `build.rs` script is with assumption `libcatboost` shared library already downloaded separately.
 * Also marked the Model as `Send` so that it can be used across threads, due to the documentation stating it's thread safe. Note that this is not yet extensively tested though.
 * As of the present the catboost version is hardcoded, it is currently 1.0.6.
 
@@ -20,6 +20,13 @@ Cargo package can be found [here](https://crates.io/crates/catboost-rs)
 ```
 apt-get install -y curl build-essential pkg-config libssl-dev libclang-dev clang cmake
 ```
+
+### Install libcatboost
+* Download catboost binary from `https://github.com/catboost/catboost/releases/tag/v1.0.6`.
+  * If you are using Linux, download `libcatboostmodel.so`
+  * If you are using MacOS, download `libcatboostmodel.dylib`
+  * Place the file in `/usr/lib/`
+  * Create a soft link to `x.x.1`, e.g. `sudo ln -s libcatboostmodel.so libcatboostmodel.so.1` 
 
 ### Basic usage example
 1. Add a dependency to your Cargo.toml:
